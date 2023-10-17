@@ -16,8 +16,10 @@ services:
   app:
     image: markoshust/magento-nginx:1.18-8
     ports:
-      - "3000:8000"
-      - "8443:8443"
+      - "80:8000"
+      - "443:8443"
+      #- "3000:8000"
+      #- "8443:8443"
     volumes: &appvolumes
       - ~/.composer:/var/www/.composer:cached
       - ~/.ssh/id_rsa:/var/www/.ssh/id_rsa:cached
@@ -45,8 +47,8 @@ services:
       --optimizer_use_condition_selectivity=1
       --optimizer_switch="rowid_filter=off"
     ports:
-      - "3366:3306"
-      #- "3306:3306"
+      - "3306:3306"
+      #- "3366:3306"
     env_file: env/db.env
     volumes:
       - dbdata:/var/lib/mysql
